@@ -7,13 +7,14 @@ const app = express();
 
 const router = express.Router();
 const localDir = __dirname;
-router.get('/', (req, res) => {
-    // res.json({
-    //     "text": "hello"
-    // }    )
-    res.sendFile('audioplayer.html', { root: localDir });
-});
+// router.get('/', (req, res) => {
+//     // res.json({
+//     //     "text": "hello"
+//     // }    )
+//     res.sendFile('audioplayer.html', { root: localDir });
+// });
 
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
