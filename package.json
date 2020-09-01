@@ -18,10 +18,7 @@
     "url": "https://github.com/mbfowler/melody-maker/issues"
   },
   "homepage": "https://github.com/mbfowler/melody-maker#readme",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "web-audio-api": "^0.2.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "jest": "^26.4.0",
     "body-parser": "^1.19.0",
