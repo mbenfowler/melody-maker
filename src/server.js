@@ -7,9 +7,10 @@ const app = express();
 
 const router = express.Router();
 router.get('/', (req, res) => {
-    res.json({
-        "text": "hello"
-    });
+    // res.json({
+    //     "text": "hello"
+    // });
+    res.sendFile(path.join(__dirname, '../audioplayer.html'))
 });
 
 app.use(bodyParser.urlencoded({ extended: true }))

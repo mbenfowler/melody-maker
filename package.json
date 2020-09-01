@@ -1,7 +1,7 @@
 {
-  "name": "charprompt-slackbot",
+  "name": "melody-maker",
   "version": "1.0.0",
-  "description": "generate random d&d character prompts",
+  "description": "generate random melody",
   "main": "functions/server.js",
   "scripts": {
     "build": "netlify-lambda build src",
@@ -10,16 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mbfowler/charprompt-slackbot.git"
+    "url": "git+https://github.com/mbfowler/melody-maker.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mbfowler/charprompt-slackbot/issues"
+    "url": "https://github.com/mbfowler/melody-maker/issues"
   },
-  "homepage": "https://github.com/mbfowler/charprompt-slackbot#readme",
+  "homepage": "https://github.com/mbfowler/melody-maker#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "speaker": "^0.5.2",
+    "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
     "jest": "^26.4.0",
