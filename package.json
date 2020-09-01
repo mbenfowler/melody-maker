@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mbfowler/melody-maker#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "speaker": "^0.5.2",
     "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
