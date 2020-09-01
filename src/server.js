@@ -6,11 +6,12 @@ const bodyParser = require('body-parser')
 const app = express();
 
 const router = express.Router();
+const localDir = __dirname;
 router.get('/', (req, res) => {
     // res.json({
     //     "text": "hello"
-    // })
-    res.sendFile('audioplayer.html', { root: __dirname });
+    // }    )
+    res.sendFile('audioplayer.html', { root: localDir });
 });
 
 app.use(bodyParser.urlencoded({ extended: true }))
