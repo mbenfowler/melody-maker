@@ -9,8 +9,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     // res.json({
     //     "text": "hello"
-    // });
-    res.sendFile(path.join(__dirname, '../audioplayer.html'))
+    // })
+    res.sendFile('audioplayer.html', { root: __dirname });
 });
 
 app.use(bodyParser.urlencoded({ extended: true }))
