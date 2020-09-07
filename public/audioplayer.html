@@ -1,7 +1,7 @@
 <div>go away vixen, dreamboat annie, and dotti</div>
 <button onclick="playSong()">Play things</button>
 <script>
-    var parsedQueryString = JSON.parse(window.location.search.split('=').pop())
+    var parsedQueryString = JSON.parse(decodeURIComponent(window.location.search.split('=').pop()))
 
     class Sound {
 

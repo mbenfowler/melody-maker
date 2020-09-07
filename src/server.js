@@ -10,7 +10,7 @@ const router = express.Router();
 const localDir = __dirname;
 router.get('/', (req, res) => {
     res.json({
-        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${JSON.stringify(createMelody())}>`
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${encodeURIComponent(JSON.stringify(createMelody()))}>`
     })
     res.sendFile('audioplayer.html', { root: localDir });
 });
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${JSON.stringify(createMelody())}>`
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${encodeURIComponent(JSON.stringify(createMelody()))}>`
     })
 });
 
