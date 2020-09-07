@@ -4,12 +4,13 @@ const express = require('express');
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser')
 const app = express();
+const createMelody = require('./melodyMaker');
 
 const router = express.Router();
 const localDir = __dirname;
 router.get('/', (req, res) => {
     res.json({
-        "text": "hello"
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${encodeURIComponent(createMelody())}>`
     })
     res.sendFile('audioplayer.html', { root: localDir });
 });
@@ -19,7 +20,7 @@ router.post('/', (req, res) => {
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": "<https://zen-cori-c5a337.netlify.app/public/audioplayer.html>"
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${encodeURIComponent(createMelody())}>`
     })
 });
 
