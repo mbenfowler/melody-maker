@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": "This is a test response"
+        "text": "<https://zen-cori-c5a337.netlify.app/public/audioplayer.html>"
     })
 });
 
