@@ -63,13 +63,13 @@
     }
 
     function playScale(notesArray) {
-        console.log(notesArray)
+        // console.log(notesArray)
         let context = new (window.AudioContext || window.webkitAudioContext)();
         let note = new Sound(context);
         let now = context.currentTime + 4;
         notesArray.forEach((element) => {
             note.play(noteFrequencyMap[element][4], now)
-            console.log(noteFrequencyMap[element][4])
+            // console.log(noteFrequencyMap[element][4])
             now += .5
         })
         note.play(noteFrequencyMap[notesArray[0]][5], now)

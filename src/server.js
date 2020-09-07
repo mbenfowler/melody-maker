@@ -7,12 +7,21 @@ const app = express();
 
 const router = express.Router();
 const localDir = __dirname;
-// router.get('/', (req, res) => {
-//     // res.json({
-//     //     "text": "hello"
-//     // }    )
-//     res.sendFile('audioplayer.html', { root: localDir });
-// });
+router.get('/', (req, res) => {
+    res.json({
+        "text": "hello"
+    })
+    res.sendFile('audioplayer.html', { root: localDir });
+});
+
+router.post('/', (req, res) => {
+    //const character = randomChar()
+    console.log({ body: req.body })
+    res.json({
+        "response_type": "in_channel",
+        "text": "This is a test response"
+    })
+});
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
