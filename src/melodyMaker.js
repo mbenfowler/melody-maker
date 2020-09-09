@@ -21,9 +21,13 @@ function createMelody() {
     return notesArray
 }
 
-module.exports = createMelody
+module.exports = {
+    pickNote,
+    createMelody
+}
 
 const cMajorNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+const testScale = ["1P 2M 3M 5P 6M", "major pentatonic", "pentatonic"]
 const noteFrequencyMap = {
     C: [
         // 16.35,
