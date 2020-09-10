@@ -1,14 +1,7 @@
 function pickNote() {
-    var noteFrequencyMapKeys = Object.keys(noteFrequencyMap)
-    var randomNoteIndex = Math.floor(Math.random() * (noteFrequencyMapKeys.length))
-    // console.log(randomNoteIndex)
-    var randomNoteKey = noteFrequencyMapKeys[randomNoteIndex]
-    // console.log(randomNoteKey)
-    var noteOctave = noteFrequencyMap[randomNoteKey]
-    // console.log(noteOctaveKeys)
-    var randomOctaveIndex = Math.floor(Math.random() * (noteOctave.length))
-    // console.log(randomOctaveIndex)
-    var randomNoteFreq = noteFrequencyMap[randomNoteKey][randomOctaveIndex]
+    var randomKey = pickRandomKey()
+    var randomOctave = pickRandomOctave(randomKey)
+    var randomNoteFreq = noteFrequencyMap[randomKey][randomOctave]
     return randomNoteFreq
 }
 
@@ -21,9 +14,36 @@ function createMelody() {
     return notesArray
 }
 
+function pickRandomKey() {
+    var noteFrequencyMapKeys = Object.keys(noteFrequencyMap)
+    var randomNoteIndex = Math.floor(Math.random() * (noteFrequencyMapKeys.length))
+    var randomKey = noteFrequencyMapKeys[randomNoteIndex]
+    return randomKey
+}
+
+function pickRandomOctave(key) {
+    var noteOctave = noteFrequencyMap[key]
+    var randomOctaveIndex = Math.floor(Math.random() * (noteOctave.length))
+    return randomOctaveIndex
+}
+
+//return an array of valid Notes given a Scale
+//from array of valid Notes, generate random melody
+
+function shiftKeys(tonic) {
+    keys = Object.keys(noteFrequencyMap)
+    newKeys = keys.slice(keys.indexOf(tonic))
+    oldKeys = keys.slice(0, keys.indexOf(tonic))
+    newKeys = newKeys.concat(oldKeys)
+    return newKeys
+}
+
 module.exports = {
     pickNote,
-    createMelody
+    createMelody,
+    pickRandomKey,
+    pickRandomOctave,
+    shiftKeys
 }
 
 const cMajorNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
