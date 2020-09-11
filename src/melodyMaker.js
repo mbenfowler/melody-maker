@@ -38,12 +38,26 @@ function shiftKeys(tonic) {
     return newKeys
 }
 
+function getValidNotes(tonic, scaleIntervals) {
+    validNotes = []
+    shiftedKeys = shiftKeys(tonic)
+    scaleIntervalArray = getScaleIntervalArray(scaleIntervals)
+    scaleIntervalArray.forEach(interval => validNotes.push(shiftedKeys[IVLS.indexOf(interval)]))
+    return validNotes
+}
+
+function getScaleIntervalArray(scale) {
+    scaleIntervalArray = scale.split(' ')
+    return scaleIntervalArray
+}
+
 module.exports = {
     pickNote,
     createMelody,
     pickRandomKey,
     pickRandomOctave,
-    shiftKeys
+    shiftKeys,
+    getValidNotes
 }
 
 const cMajorNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
@@ -182,3 +196,18 @@ const noteFrequencyMap = {
         // 7902.13
     ],
 }
+
+const IVLS = [
+    "1P",
+    "2m",
+    "2M",
+    "3m",
+    "3M",
+    "4P",
+    "5d",
+    "5P",
+    "6m",
+    "6M",
+    "7m",
+    "7M",
+  ]
