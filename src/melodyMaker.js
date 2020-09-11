@@ -17,11 +17,11 @@ function createMelody() {
         time += .5
     }
     validNotes.forEach((note) => {
-        notesArray.push([noteFrequencyMap[note][2], time, time + .5])
-        time += .5
+        notesArray.push([noteFrequencyMap[note][2], time, time + 1])
+        time += 1
     })
 
-    notesArray.push([noteFrequencyMap[validNotes[0]][2], time, time + .5])
+    notesArray.push([noteFrequencyMap[validNotes[0]][2], time, time + 3])
 
     return notesArray
 }
@@ -319,7 +319,7 @@ const SCALES = [
       "·superlocrian diminished",
     ],
     ["1P 2m 3m 4P 5d 6M 7m", "locrian 6", "locrian natural 6", "locrian sharp 6"],
-    ["1P 2A 3M 4P 5P 5A 7M", "augmented heptatonic"],
+    // ["1P 2A 3M 4P 5P 5A 7M", "augmented heptatonic"],
     ["1P 2M 3m 5d 5P 6M 7m", "romanian minor"],
     // ["1P 2M 3m 4A 5P 6M 7m", "dorian #4"],
     // ["1P 2M 3m 4A 5P 6M 7M", "lydian diminished"],
