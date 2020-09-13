@@ -2,15 +2,17 @@ function pickNote() {
     var randomKey = pickRandomKey()
     var randomOctave = pickRandomOctave(randomKey)
     var randomNoteFreq = noteFrequencyMap[randomKey][randomOctave]
-    return randomNoteFreq
+    var keyFreq = [randomKey, randomNoteFreq]
+    return keyFreq
 }
 
 function createMelody() {
-    var notesArray = []
     var tonic = pickNote()
-    var scaleIntervals = pickRandomScale()
-    var validNotes = getValidNotes(tonic, scaleIntervals)
+    var scale = pickRandomScale()
+    var scaleNames = scale.slice(1)
+    var validNotes = getValidNotes(tonic[1], scale[0])
     
+    var notesArray = []
     var time = 0
     for(var i = 0; i < 6; i++) {
         notesArray.push([pickValidRandomNote(validNotes), i/2, i/2 + .5])
@@ -22,8 +24,8 @@ function createMelody() {
     })
 
     notesArray.push([noteFrequencyMap[validNotes[0]][2], time, time + 3])
-
-    return notesArray
+    var melodyParameters = [notesArray, tonic[0], scaleNames]
+    return melodyParameters
 }
 
 function pickValidRandomNote(validNotes) {
@@ -49,14 +51,9 @@ function pickRandomOctave(key) {
 
 function pickRandomScale() {
     var scaleIndex = Math.floor(Math.random() * (SCALES.length))
-    scaleIntervals = SCALES[scaleIndex][0]
-    console.log(scaleIndex)
-    console.log(scaleIntervals)
-    return scaleIntervals
+    scale = SCALES[scaleIndex]
+    return scale
 }
-
-//return an array of valid Notes given a Scale
-//from array of valid Notes, generate random melody
 
 function shiftKeys(tonic) {
     keys = Object.keys(noteFrequencyMap)

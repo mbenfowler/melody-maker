@@ -9,18 +9,19 @@ const { createMelody } = require('./melodyMaker');
 const router = express.Router();
 const localDir = __dirname;
 router.get('/', (req, res) => {
+    const melody = createMelody();
     res.json({
-        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${encodeURIComponent(JSON.stringify(createMelody()))}>`
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?key=${encodeURIComponent(melody[1])}&scale=${encodeURIComponent(melody[2])}&melody=${encodeURIComponent(JSON.stringify(melody[0]))}>`
     })
     res.sendFile('audioplayer.html', { root: localDir });
 });
 
 router.post('/', (req, res) => {
-    //const character = randomChar()
+    const melody = createMelody();
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?melody=${encodeURIComponent(JSON.stringify(createMelody()))}>`
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?key=${encodeURIComponent(melody[1])}&scale=${encodeURIComponent(melody[2])}&melody=${encodeURIComponent(JSON.stringify(melody[0]))}>`
     })
 });
 
