@@ -13,10 +13,12 @@ function createMelody() {
     var validNotes = getValidNotes(tonic[1], scale[0])
     
     var notesArray = []
+    const noteLengths = [.25, .5]
     var time = 0
-    for(var i = 0; i < 6; i++) {
-        notesArray.push([pickValidRandomNote(validNotes), i/2, i/2 + .5])
-        time += .5
+    while(time < 10) {
+        var thisNoteLength = noteLengths[Math.floor(Math.random() * (noteLengths.length))]
+        notesArray.push([pickValidRandomNote(validNotes), time, time + thisNoteLength])
+        time += thisNoteLength
     }
     validNotes.forEach((note) => {
         notesArray.push([noteFrequencyMap[note][2], time, time + 1])
