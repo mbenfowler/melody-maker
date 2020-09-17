@@ -6,6 +6,19 @@ function pickNote() {
     return keyFreq
 }
 
+function createScale(tonic, scale) {
+    var validNotes = getValidNotes(tonic[1], scale[0])
+    var notesArray = []
+    var time = 0
+    validNotes.forEach((note) => {
+        notesArray.push([noteFrequencyMap[note][2], time, time + 1])
+        time += 1
+    })
+
+    notesArray.push([noteFrequencyMap[validNotes[0]][2], time, time + 3])
+    return notesArray
+}
+
 function createMelody() {
     var tonic = pickNote()
     var scale = pickRandomScale()
@@ -20,13 +33,8 @@ function createMelody() {
         notesArray.push([pickValidRandomNote(validNotes), time, time + thisNoteLength])
         time += thisNoteLength
     }
-    validNotes.forEach((note) => {
-        notesArray.push([noteFrequencyMap[note][2], time, time + 1])
-        time += 1
-    })
 
-    notesArray.push([noteFrequencyMap[validNotes[0]][2], time, time + 3])
-    var melodyParameters = [notesArray, tonic[0], scaleNames]
+    var melodyParameters = [notesArray, tonic[0], scaleNames, createScale(tonic, scale)]
     return melodyParameters
 }
 

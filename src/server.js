@@ -11,10 +11,12 @@ const localDir = __dirname;
 router.get('/', (req, res) => {
     const melody = createMelody();
     res.json({
-        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?key=${encodeURIComponent(melody[1])}&scale=${encodeURIComponent(melody[2])}&melody=${encodeURIComponent(JSON.stringify(melody[0]))}>`
+        "text": `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?key=${encodeURIComponent(melody[1])}&scale=${encodeURIComponent(melody[2])}&melody=${encodeURIComponent(JSON.stringify(melody[0]))}&scaleNotes=${encodeURIComponent(JSON.stringify(melody[3]))}>`
     })
     res.sendFile('audioplayer.html', { root: localDir });
 });
+
+// make another get request for a refresh of the view page
 
 router.post('/', (req, res) => {
     const melody = createMelody();
