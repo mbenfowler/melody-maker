@@ -1,9 +1,15 @@
 <div>go away vixen, dreamboat annie, and dotti</div>
-<button id="myButton" onclick="playSong(); changeButtonText()">Your melody is in...</button>
+<button id="myMelody" onclick="playMelody(); changeMelodyButtonText()">Your melody is in...</button>
+<button id="myScale" onclick="playScale(); changeScaleButtonText()">Your scale is in...</button>
 <script>
-    function changeButtonText() {
-        document.getElementById("myButton").innerHTML = `${queryObject.key} ${queryObject.scale}`
+    function changeMelodyButtonText() {
+        document.getElementById("myMelody").innerHTML = `${queryObject.key} ${queryObject.scale}`
     }
+
+    function changeScaleButtonText() {
+        document.getElementById("myScale").innerHTML = `${queryObject.key} ${queryObject.scale}`
+    }
+    
     var queryObject = queryStringToObjectReduce(window.location.search)
 
     function queryStringToObjectReduce(queryString) {
@@ -56,13 +62,20 @@
     
     }
 
-    function playSong() {
+    function playScale() {
+        playNotes(queryObject.scaleNotes)
+    }
+
+    function playMelody() {
+        playNotes(queryObject.melody)
+    }
+    
+    function playNotes(notes) {
         let context = new (window.AudioContext || window.webkitAudioContext)();
         let note = new Sound(context);
         let now = context.currentTime;
-        queryObject.melody.forEach(array => {
+        notes.forEach(array => {
             note.play(array[0], now + array[1], now + array[2]);
         })
     }
-
 </script>
