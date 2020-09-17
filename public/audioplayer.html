@@ -1,9 +1,13 @@
 <div>go away vixen, dreamboat annie, and dotti</div>
-<button id="myMelody" onclick="playMelody(); changeButtonText()">Your melody is in...</button>
-<button id="myScale" onclick="playScale()">Your scale is in...</button>
+<button id="myMelody" onclick="playMelody(); changeMelodyButtonText()">Your melody is in...</button>
+<button id="myScale" onclick="playScale(); changeScaleButtonText()">Your scale is in...</button>
 <script>
-    function changeButtonText() {
+    function changeMelodyButtonText() {
         document.getElementById("myMelody").innerHTML = `${queryObject.key} ${queryObject.scale}`
+    }
+
+    function changeScaleButtonText() {
+        document.getElementById("myScale").innerHTML = `${queryObject.key} ${queryObject.scale}`
     }
     
     var queryObject = queryStringToObjectReduce(window.location.search)
