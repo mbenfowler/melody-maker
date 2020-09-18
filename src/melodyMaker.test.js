@@ -1,4 +1,4 @@
-const { pickNote, pickRandomKey, orderNotesTonicFirst, getValidNotes } = require('./melodyMaker');
+const { pickNote, orderNotesTonicFirst, getValidNotes } = require('./melodyMaker');
 
 test('pickNote returns a frequency number', () => {
     const note = pickNote();

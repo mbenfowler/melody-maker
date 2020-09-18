@@ -1,6 +1,7 @@
 <div>go away vixen, dreamboat annie, and dotti</div>
 <button id="myMelody" onclick="playMelody(); changeMelodyButtonText()">Your melody is in...</button>
 <button id="myScale" onclick="playScale(); changeScaleButtonText()">Your scale is in...</button>
+<button id="reload" onClick="window.location.reload();">Get me a new melody!</button>
 <script>
     function changeMelodyButtonText() {
         document.getElementById("myMelody").innerHTML = `${queryObject.key} ${queryObject.scale}`

@@ -5,9 +5,9 @@ const serverless = require('serverless-http');
 const bodyParser = require('body-parser')
 const app = express();
 const { createMelody } = require('./melodyMaker');
-function createMelodyURL(melody) {
-    var queryParams = queryParamToString(melody)
-    return `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?${queryParams}>`
+function createMelodyURL(melody, req) {
+    var queryParams = queryParamToString(melody);
+    return `${req.headers.referer}audioplayer.html?${queryParams}`
 }
 
 function queryParamToString(queryObject) {
@@ -26,9 +26,8 @@ const localDir = __dirname;
 router.get('/', (req, res) => {
     const melody = createMelody();
     res.json({
-        "text": createMelodyURL(melody)
+        "url": createMelodyURL(melody, req)
     })
-    res.sendFile('audioplayer.html', { root: localDir });
 });
 
 // make another get request for a refresh of the view page
@@ -38,7 +37,7 @@ router.post('/', (req, res) => {
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": createMelodyURL(melody)
+        "text": `<${createMelodyURL(melody, req)}>`
     })
 });
 
