@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const { createMelody } = require('./melodyMaker');
 function createMelodyURL(melody, req) {
+    console.log(req)
     var queryParams = queryParamToString(melody);
     return `${req.headers.referer}audioplayer.html?${queryParams}`
 }
@@ -37,7 +38,7 @@ router.post('/', (req, res) => {
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": `<${createMelodyURL(melody, req)}>`
+        "text": `<${createMelodyURL(melody, req)}/public/>`
     })
 });
 
