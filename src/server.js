@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const { createMelody } = require('./melodyMaker');
 function createMelodyURL(melody) {
-    return `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?key=${encodeURIComponent(melody[1])}&scale=${encodeURIComponent(melody[2])}&melody=${encodeURIComponent(JSON.stringify(melody[0]))}&scaleNotes=${encodeURIComponent(JSON.stringify(melody[3]))}>`
+    return `<https://zen-cori-c5a337.netlify.app/public/audioplayer.html?key=${encodeURIComponent(melody.key)}&scale=${encodeURIComponent(melody.scale)}&melody=${encodeURIComponent(JSON.stringify(melody.melody))}&scaleNotes=${encodeURIComponent(JSON.stringify(melody.scaleNotes))}>`
 }
 
 const router = express.Router();

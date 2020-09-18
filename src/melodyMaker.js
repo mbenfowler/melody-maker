@@ -35,7 +35,13 @@ function createMelody() {
     }
 
     // turn melodyParameters into an object so server can look up by key instead of array index
-    var melodyParameters = [notesArray, tonic[0], scaleNames, createScale(tonic, scale)]
+    var melodyParameters = { 
+        melody: notesArray, 
+        key: tonic[0], 
+        scale: scaleNames, 
+        scaleNotes: createScale(tonic, scale)
+    }
+    
     return melodyParameters
 }
 
