@@ -7,15 +7,22 @@ function pickNote() {
 }
 
 function createScale(tonic, scale) {
-    var validNotes = getValidNotes(tonic[1], scale[0])
+    console.log({tonic})
+    var validNotes = getValidNotes(tonic[0], scale[0])
     var notesArray = []
+    var octave = 2
     var time = 0
+    var lastNote = ''
     validNotes.forEach((note) => {
-        notesArray.push([noteFrequencyMap[note][2], time, time + 1])
+        if(Object.keys(noteFrequencyMap).indexOf(note) < Object.keys(noteFrequencyMap).indexOf(lastNote)) {
+            octave++
+        }
+        notesArray.push([noteFrequencyMap[note][octave], time, time + 1])
         time += 1
+        lastNote = note
     })
 
-    notesArray.push([noteFrequencyMap[validNotes[0]][2], time, time + 3])
+    notesArray.push([noteFrequencyMap[validNotes[0]][octave], time, time + 3])
     return notesArray
 }
 
@@ -23,7 +30,7 @@ function createMelody() {
     var tonic = pickNote()
     var scale = pickRandomScale()
     var scaleNames = scale.slice(1)
-    var validNotes = getValidNotes(tonic[1], scale[0])
+    var validNotes = getValidNotes(tonic[0], scale[0])
     
     var notesArray = []
     const noteLengths = [.25, .5]
@@ -66,25 +73,24 @@ function pickRandomOctave(key) {
 }
 
 function pickRandomScale() {
-    var scaleIndex = Math.floor(Math.random() * (SCALES.length))
-    scale = SCALES[scaleIndex]
+    const scaleIndex = Math.floor(Math.random() * (SCALES.length))
+    const scale = SCALES[scaleIndex]
     return scale
 }
 
-function shiftKeys(tonic) {
-    keys = Object.keys(noteFrequencyMap)
-    newKeys = keys.slice(keys.indexOf(tonic))
-    oldKeys = keys.slice(0, keys.indexOf(tonic))
-    newKeys = newKeys.concat(oldKeys)
-    return newKeys
+function orderNotesTonicFirst(tonic) {
+    const notes = Object.keys(noteFrequencyMap)
+    const tonicIndex = notes.indexOf(tonic)
+    const newKeys = notes.slice(tonicIndex)
+    const oldKeys = notes.slice(0, tonicIndex)
+    return newKeys.concat(oldKeys)
 }
 
 function getValidNotes(tonic, scaleIntervals) {
-    validNotes = []
-    shiftedKeys = shiftKeys(tonic)
-    scaleIntervalArray = getScaleIntervalArray(scaleIntervals)
-    scaleIntervalArray.forEach(interval => validNotes.push(shiftedKeys[IVLS.indexOf(interval)]))
-    return validNotes
+    const orderedNotes = orderNotesTonicFirst(tonic)
+    const scaleIntervalArray = getScaleIntervalArray(scaleIntervals)
+    console.log({tonic, scaleIntervalArray, orderedNotes})
+    return scaleIntervalArray.map(interval => orderedNotes[IVLS.indexOf(interval)])
 }
 
 function getScaleIntervalArray(scale) {
@@ -97,12 +103,10 @@ module.exports = {
     createMelody,
     pickRandomKey,
     pickRandomOctave,
-    shiftKeys,
+    orderNotesTonicFirst,
     getValidNotes
 }
 
-const cMajorNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
-const testScale = ["1P 2M 3M 5P 6M", "major pentatonic", "pentatonic"]
 const noteFrequencyMap = {
     C: [
         // 16.35,
