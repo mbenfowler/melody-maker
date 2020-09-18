@@ -1,7 +1,7 @@
 <div>go away vixen, dreamboat annie, and dotti</div>
 <button id="myMelody" onclick="playMelody(); changeMelodyButtonText()">Your melody is in...</button>
 <button id="myScale" onclick="playScale(); changeScaleButtonText()">Your scale is in...</button>
-<button id="reload" onClick="window.location.reload();">Get me a new melody!</button>
+<button id="reload" onClick="getNewMelody();">Get me a new melody!</button>
 <script>
     function changeMelodyButtonText() {
         document.getElementById("myMelody").innerHTML = `${queryObject.key} ${queryObject.scale}`
@@ -11,6 +11,18 @@
         document.getElementById("myScale").innerHTML = `${queryObject.key} ${queryObject.scale}`
     }
     
+    async function getNewMelody() {
+        const url = `${window.location.origin}/.netlify/functions/server`
+        const response = await fetchAsync(url)
+        window.location.href = response.url
+    }
+
+    async function fetchAsync(url) {
+        let response = await fetch(url);
+        let data = await response.json();
+        return data;
+    }
+
     var queryObject = queryStringToObjectReduce(window.location.search)
     console.log(queryObject)
 
