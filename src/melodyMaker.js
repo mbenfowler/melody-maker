@@ -7,8 +7,8 @@ function pickNote() {
 }
 
 function createScale(tonic, scale) {
-    console.log({tonic})
     var validNotes = getValidNotes(tonic[0], scale[0])
+    validNotes.push(validNotes[0])
     var notesArray = []
     var octave = 2
     var time = 0
@@ -22,7 +22,6 @@ function createScale(tonic, scale) {
         lastNote = note
     })
 
-    notesArray.push([noteFrequencyMap[validNotes[0]][octave], time, time + 3])
     return notesArray
 }
 
