@@ -5,10 +5,19 @@ const serverless = require('serverless-http');
 const bodyParser = require('body-parser')
 const app = express();
 const { createMelody } = require('./melodyMaker');
+
 function createMelodyURL(melody, req) {
     console.log(req)
     var queryParams = queryParamToString(melody);
-    return `${req.headers.referer}audioplayer.html?${queryParams}`
+    return `http://${req.headers.host}/${getPublicIfHostNotLocal(req)}audioplayer.html?${queryParams}`
+}
+
+function getPublicIfHostNotLocal(req) {
+    if(req.headers.host != `localhost:3000`){
+        return `public/`
+    } else {
+        return ''
+    }
 }
 
 function queryParamToString(queryObject) {
@@ -38,7 +47,7 @@ router.post('/', (req, res) => {
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": `<${createMelodyURL(melody, req)}/public/>`
+        "text": `<${createMelodyURL(melody, req)}>`
     })
 });
 
