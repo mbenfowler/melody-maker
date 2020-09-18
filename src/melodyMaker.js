@@ -34,7 +34,6 @@ function createMelody() {
         time += thisNoteLength
     }
 
-    // turn melodyParameters into an object so server can look up by key instead of array index
     var melodyParameters = { 
         melody: notesArray, 
         key: tonic[0], 
