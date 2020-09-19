@@ -1,8 +1,8 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import styled from "styled-components";
-import Img from "gatsby-image";
-import { motion } from "framer-motion";
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import styled from 'styled-components';
+import Img from 'gatsby-image';
+import { motion } from 'framer-motion';
 
 const Wrapper = styled.div``;
 
