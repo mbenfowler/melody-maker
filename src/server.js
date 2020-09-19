@@ -40,14 +40,30 @@ router.get('/', (req, res) => {
     })
 });
 
-// make another get request for a refresh of the view page
-
 router.post('/', (req, res) => {
     const melody = createMelody();
     console.log({ body: req.body })
     res.json({
         "response_type": "in_channel",
-        "text": `<${createMelodyURL(melody, req)}>`
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": ":musical_note: Ooooh you want your own song, eh? :musical_note:"
+                },
+                "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Take me to my unique melody!"
+                    },
+                    "value": "melody_url_button",
+                    "action_id": "button",
+                    "url": createMelodyURL(melody, req)
+                }
+            }
+        ]
     })
 });
 
