@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": ":musical_note: Ooooh you want your own song, eh? :musical_note: ----------->"
+                    "text": ":musical_note: Ooooh you want your own song, eh? :musical_note:"
                 },
                 "accessory": {
                     "type": "button",
