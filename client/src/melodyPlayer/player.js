@@ -1,6 +1,6 @@
 /* eslint-disable functional/no-this-expression */
 export async function getNewMelody() {
-  const url = `http://localhost:3000/.netlify/functions/server`;
+  const url = process.env.SERVER_HOST;
   const response = await fetchAsync(url, {mode: 'no-cors'});
   window.location.href = response.url;
 }
