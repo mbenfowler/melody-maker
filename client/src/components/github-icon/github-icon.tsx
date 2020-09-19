@@ -23,7 +23,7 @@ const GithubIcon: React.FC = () => {
   return (
     <Wrapper>
       <motion.a
-        href="https://github.com/gojutin/gatsby-starter-typescript-deluxe"
+        href="https://github.com/mbfowler/melody-maker"
         rel="noopener noreferrer"
         target="_blank"
         css={`
