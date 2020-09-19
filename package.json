@@ -4,7 +4,7 @@
   "description": "generate random melody",
   "main": "functions/server.js",
   "scripts": {
-    "build": "netlify-lambda build src",
+    "build": "netlify-lambda build server",
     "start": "nodemon server-local.js",
     "test": "jest --verbose"
   },
