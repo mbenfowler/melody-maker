@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
                     },
                     "value": "melody_url_button",
                     "action_id": "button",
-                    "url": `${createMelodyURL(melody, req)}`
+                    "url": createMelodyURL(melody, req)
                 }
             }
         ]
