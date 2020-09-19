@@ -7,10 +7,12 @@ const cors = require('cors');
 const app = express();
 const { createMelody } = require('./melodyMaker');
 
+require('dotenv').config();
+
 function createMelodyURL(melody, req) {
     console.log(req)
     var queryParams = queryParamToString(melody);
-    return `${req.headers.origin}?${queryParams}`
+    return `${process.env.CLIENT_URL}?${queryParams}`
 }
 
 function queryParamToString(queryObject) {
