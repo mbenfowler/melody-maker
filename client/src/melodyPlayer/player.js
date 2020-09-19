@@ -1,7 +1,7 @@
 /* eslint-disable functional/no-this-expression */
 export async function getNewMelody() {
   const url = process.env.SERVER_HOST;
-  const response = await fetchAsync(url, {mode: 'no-cors'});
+  const response = await fetchAsync(url, { mode: 'no-cors' });
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line functional/immutable-data
     window.location.href = response.url;
@@ -13,9 +13,6 @@ async function fetchAsync(url) {
   const data = await response.json();
   return data;
 }
-
-var queryObject = queryStringToObjectReduce(window.location.search);
-console.log(queryObject);
 
 export function queryStringToObjectReduce(queryString) {
   const decodedQueryString = decodeURIComponent(queryString);
@@ -66,10 +63,12 @@ class Sound {
 }
 
 export function playNotes(notes) {
-  const context = new (window.AudioContext || window.webkitAudioContext)();
-  const note = new Sound(context);
-  const now = context.currentTime;
-  notes.forEach((array) => {
-    note.play(array[0], now + array[1], now + array[2]);
-  });
+  if (typeof window !== 'undefined') {
+    const context = new (window.AudioContext || window.webkitAudioContext)();
+    const note = new Sound(context);
+    const now = context.currentTime;
+    notes.forEach((array) => {
+      note.play(array[0], now + array[1], now + array[2]);
+    });
+  }
 }

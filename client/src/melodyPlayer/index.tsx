@@ -37,7 +37,11 @@ function NewMelodyButton() {
 }
 
 export function MelodyPlayer() {
-  var queryObject = queryStringToObjectReduce(window.location.search);
+  // eslint-disable-next-line functional/no-let
+  let queryObject = {};
+  if (typeof window !== 'undefined') {
+    queryObject = queryStringToObjectReduce(window.location.search);
+  }
   return (
     <>
       <MelodyButton melody={queryObject.melody} tonic={queryObject.key} />
