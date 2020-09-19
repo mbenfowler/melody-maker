@@ -2,7 +2,10 @@
 export async function getNewMelody() {
   const url = process.env.SERVER_HOST;
   const response = await fetchAsync(url, {mode: 'no-cors'});
-  window.location.href = response.url;
+  if (typeof window !== 'undefined') {
+    // eslint-disable-next-line functional/immutable-data
+    window.location.href = response.url;
+  }
 }
 
 async function fetchAsync(url) {
