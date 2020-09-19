@@ -1,6 +1,6 @@
 /* eslint-disable functional/no-this-expression */
 export async function getNewMelody() {
-  const url = process.env.SERVER_HOST;
+  const url = process.env.GATSBY_SERVER_URL;
   const response = await fetchAsync(url, { mode: 'no-cors' });
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line functional/immutable-data
