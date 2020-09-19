@@ -1,10 +1,14 @@
-const siteTitle = "gatsby-starter-typescript-deluxe";
+const siteTitle = 'gatsby-starter-typescript-deluxe';
 const siteDescription =
-  "A Gatsby starter with TypeScript, Storybook, Styled Components, Framer Motion, Jest, and more.";
-const siteAuthor = "@gojutin";
-const siteUrl = "https://gatsby-starter-typescript-deluxe.netlify.com";
+  'A Gatsby starter with TypeScript, Storybook, Styled Components, Framer Motion, Jest, and more.';
+const siteAuthor = '@gojutin';
+const siteUrl = 'https://gatsby-starter-typescript-deluxe.netlify.com';
 const siteImage = `${siteUrl}/icons/icon_512x512.png`;
-const siteKeywords = ["gatsby", "typescript", "starter", "javascript", "react"];
+const siteKeywords = ['gatsby', 'typescript', 'starter', 'javascript', 'react'];
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -20,11 +24,11 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images`,
-        name: "images",
+        name: 'images',
       },
     },
     {
-      resolve: "gatsby-plugin-react-axe",
+      resolve: 'gatsby-plugin-react-axe',
       options: {
         showInProduction: false,
         // Options to pass to axe-core.
@@ -37,7 +41,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-react-helmet',
     `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -49,17 +53,17 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: "src/images/icon.png",
+        icon: 'src/images/icon.png',
         icons: [
           {
-            src: "icons/icon_512x512.png",
-            sizes: "512x512",
-            types: "image/png",
+            src: 'icons/icon_512x512.png',
+            sizes: '512x512',
+            types: 'image/png',
           },
           {
-            src: "icons/icon_192x192.png",
-            sizes: "192x192",
-            types: "image/png",
+            src: 'icons/icon_192x192.png',
+            sizes: '192x192',
+            types: 'image/png',
           },
         ],
       },

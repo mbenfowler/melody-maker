@@ -3,21 +3,16 @@ const path = require('path');
 const express = require('express');
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const app = express();
 const { createMelody } = require('./melodyMaker');
+
+require('dotenv').config();
 
 function createMelodyURL(melody, req) {
     console.log(req)
     var queryParams = queryParamToString(melody);
-    return `http://${req.headers.host}/${getPublicIfHostNotLocal(req)}audioplayer.html?${queryParams}`
-}
-
-function getPublicIfHostNotLocal(req) {
-    if(req.headers.host != `localhost:3000`){
-        return `public/`
-    } else {
-        return ''
-    }
+    return `${process.env.CLIENT_URL}?${queryParams}`
 }
 
 function queryParamToString(queryObject) {
@@ -67,6 +62,8 @@ router.post('/', (req, res) => {
     })
 });
 
+
+app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/.netlify/functions/server', router);  // path must route to lambda
