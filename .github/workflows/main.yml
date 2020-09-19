@@ -11,7 +11,7 @@ on:
     branches: [ master ]
   schedule:
   - cron: "0 2 * * 1-5"
-    
+
 jobs:
   test:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
@@ -30,6 +30,6 @@ jobs:
 
     - name: npm install, build and test
       run: |
-        npm install
+        npm install && cd client && npm install
         npm run build --if-present
         npm test
