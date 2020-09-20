@@ -2,14 +2,18 @@ import * as React from 'react';
 import { Button } from '../components/button';
 import { queryStringToObjectReduce, playNotes, getNewMelody } from './player';
 
-function MelodyButton(props: { melody: any; tonic: string }) {
+function MelodyButton(props: {
+  melody: any;
+  tonic: string;
+  scaleName: string;
+}) {
   const [buttonText, setButtonText] = React.useState('Your melody is in...');
 
   return (
     <Button
       onClick={() => {
         playNotes(props.melody);
-        setButtonText(`Your melody is in ${props.tonic}`);
+        setButtonText(`Your melody is in ${props.tonic} ${props.scaleName}`);
       }}
     >
       {buttonText}
@@ -17,14 +21,14 @@ function MelodyButton(props: { melody: any; tonic: string }) {
   );
 }
 
-function ScaleButton(props: { scale: any; tonic: string }) {
+function ScaleButton(props: { scale: any; tonic: string; scaleName: string }) {
   const [buttonText, setButtonText] = React.useState('Your scale is in...');
 
   return (
     <Button
       onClick={() => {
         playNotes(props.scale);
-        setButtonText(`Your scale is in ${props.tonic}`);
+        setButtonText(`Your scale is in ${props.tonic} ${props.scaleName}`);
       }}
     >
       {buttonText}
@@ -44,8 +48,16 @@ export function MelodyPlayer() {
   }
   return (
     <>
-      <MelodyButton melody={queryObject.melody} tonic={queryObject.key} />
-      <ScaleButton scale={queryObject.scaleNotes} tonic={queryObject.key} />
+      <MelodyButton
+        melody={queryObject.melody}
+        tonic={queryObject.key}
+        scaleName={queryObject.scale}
+      />
+      <ScaleButton
+        scale={queryObject.scaleNotes}
+        tonic={queryObject.key}
+        scaleName={queryObject.scale}
+      />
       <NewMelodyButton />
     </>
   );
