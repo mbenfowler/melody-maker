@@ -11,4 +11,4 @@ Clicking the "Get me a new melody!" button hits our API, returning an encoded se
 - A lot of the theory logic was inspired by and borrowed from [tonaljs](https://github.com/tonaljs/tonal)
 
 ### Applications:
-- Makes for a fun slackbot ![Melody Maker Slackbot](/images/slackbot.png)
+- Makes for a fun slackbot ![Melody Maker Slackbot](/images/slackbot-response.png)
