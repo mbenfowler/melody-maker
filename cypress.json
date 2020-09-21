@@ -1,1 +1,7 @@
-{}
+{
+  "env": {
+    "apiURL": "localhost:3000/.netlify/functions/server"
+  },
+  "baseUrl": "http://localhost:8000",
+  "chromeWebSecurity": false
+}
