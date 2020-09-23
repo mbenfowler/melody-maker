@@ -14,7 +14,8 @@ import { SEO } from '../components/seo';
   1. A basic styled component using the theme.
 */
 const StyledComponent1 = styled.p`
-  color: ${(props) => props.theme.colors.orange};
+  color: ${(props: { theme: { colors: { orange: any } } }) =>
+    props.theme.colors.orange};
   font-size: 1.2rem;
 `;
 
@@ -34,7 +35,8 @@ const StyledComponent2 = styled.p`
 */
 
 const OrangeBlock = styled(motion.div)`
-  background: ${(props) => props.theme.colors.orange};
+  background: ${(props: { theme: { colors: { orange: any } } }) =>
+    props.theme.colors.orange};
   height: 100px;
   width: 100px;
   border-radius: 10px;
@@ -52,7 +54,8 @@ const BlueBlock = styled(motion.div).attrs(() => ({
   transition: { duration: 2 },
   whileHover: { scale: 0.8 },
 }))`
-  background: ${(props) => props.theme.colors.blue};
+  background: ${(props: { theme: { colors: { blue: any } } }) =>
+    props.theme.colors.blue};
   height: 100px;
   width: 100px;
   border-radius: 10px;
@@ -65,21 +68,24 @@ const BlocksWrapper = styled.section`
   margin-top: 20px;
 `;
 
-const AboutPage: React.FC<RouteComponentProps> = ({ location = {} }) => {
-  const path = location.pathname;
+const AboutPage: React.FC<RouteComponentProps> = () => {
   return (
     <Layout>
       <SEO
-        title="About gatsby-starter-template-deluxe"
+        title="About"
         description="Examples using the gatsby-starter-template-deluxe."
       />
       <h3>
-        Hi, you are on the <code>{path}</code> page!
+        {' '}
+        Melody Maker is an open source music education/creative tool that will
+        generate and play you a unique melody!
       </h3>
-
-      <StyledComponent1>I am a basic styled component.</StyledComponent1>
+      <StyledComponent1>Project details:</StyledComponent1>
       <StyledComponent2>
-        My font color should change on a small device.
+        The app is made with React + Node(Express) and hosted on Netlify Playing
+        of the tones uses the standard Web Audio API audio context that can be
+        played in any modern browser. (sorry IE) A lot of the theory logic was
+        inspired by and borrowed from tonaljs
       </StyledComponent2>
 
       <BlocksWrapper>
