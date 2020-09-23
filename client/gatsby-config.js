@@ -1,4 +1,5 @@
-const siteTitle = 'gatsby-starter-typescript-deluxe';
+/* eslint-disable functional/immutable-data */
+const siteTitle = 'Make me a tune!';
 const siteDescription =
   'A Gatsby starter with TypeScript, Storybook, Styled Components, Framer Motion, Jest, and more.';
 const siteAuthor = '@gojutin';
@@ -8,7 +9,7 @@ const siteKeywords = ['gatsby', 'typescript', 'starter', 'javascript', 'react'];
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
