@@ -15,6 +15,7 @@ function MelodyButton(props: {
         playNotes(props.melody);
         setButtonText(`Your melody is in ${props.tonic} ${props.scaleName}`);
       }}
+      data-qa="melodyButton"
     >
       {buttonText}
     </Button>
@@ -30,6 +31,7 @@ function ScaleButton(props: { scale: any; tonic: string; scaleName: string }) {
         playNotes(props.scale);
         setButtonText(`Your scale is in ${props.tonic} ${props.scaleName}`);
       }}
+      data-qa="scaleButton"
     >
       {buttonText}
     </Button>
@@ -37,7 +39,11 @@ function ScaleButton(props: { scale: any; tonic: string; scaleName: string }) {
 }
 
 function NewMelodyButton() {
-  return <Button onClick={getNewMelody}>Get me a new melody!</Button>;
+  return (
+    <Button onClick={getNewMelody} data-qa="getNewMelodyButton">
+      Get me a new melody!
+    </Button>
+  );
 }
 
 export function MelodyPlayer() {
