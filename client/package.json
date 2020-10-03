@@ -68,6 +68,7 @@
     "babel-plugin-styled-components": "^1.11.1",
     "babel-preset-gatsby": "^0.5.5",
     "babel-preset-react-app": "^9.1.2",
+    "cypress": "^5.3.0",
     "eslint": "^7.6.0",
     "eslint-config-gojutin": "0.1.1",
     "eslint-config-prettier": "^6.11.0",
