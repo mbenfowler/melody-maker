@@ -21,4 +21,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          config-file: config/production.json
+          command: cypress run --env configFile=production
