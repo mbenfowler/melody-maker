@@ -1,0 +1,8 @@
+{
+  "env": {
+    "apiURL": "https://zen-cori-c5a337.netlify.app/.netlify/functions/server"
+  },
+  "baseUrl": "https://quizzical-varahamihira-d6e47e.netlify.app/",
+  "chromeWebSecurity": false,
+  "projectId": "rajcgm"
+}
