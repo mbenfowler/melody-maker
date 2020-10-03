@@ -1,0 +1,24 @@
+name: Cypress e2e tests
+on: 
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+  - cron: "0 2 * * 1-5"
+jobs:
+  cypress-run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['10']
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          command: npx cypress run --env configFile=production
