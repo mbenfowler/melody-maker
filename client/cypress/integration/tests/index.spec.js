@@ -1,4 +1,6 @@
-context('On index page', () => {
+const { describe } = require('mocha');
+
+describe('On index page', () => {
   beforeEach(() => {
     cy.visit('/');
   });
