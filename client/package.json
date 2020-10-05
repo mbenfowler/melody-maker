@@ -72,6 +72,7 @@
     "eslint": "^7.6.0",
     "eslint-config-gojutin": "0.1.1",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-immutable": "^1.0.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^23.20.0",
