@@ -1,5 +1,3 @@
-const { describe } = require('mocha');
-
 describe('API', () => {
   it('get request returns a success message', () => {
     cy.request(Cypress.env('apiURL')).then(async (response) => {

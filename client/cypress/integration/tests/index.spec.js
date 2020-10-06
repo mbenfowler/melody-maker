@@ -1,5 +1,3 @@
-const { describe } = require('mocha');
-
 describe('On index page', () => {
   beforeEach(() => {
     cy.visit('/');
