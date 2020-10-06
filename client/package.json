@@ -91,5 +91,10 @@
     "ts-jest": "^26.2.0",
     "tslint-immutable": "^6.0.1",
     "typescript": "^3.9.7"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "client/cypress"
+    ]
   }
 }
