@@ -21,4 +21,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          command: CYPRESS_CACHE_FOLDER=cache/Cypress npx cypress run --env configFile=production
+          command: |
+            if [[ -v CYPRESS_baseUrl ]]; then
+              echo Testing external url $CYPRESS_baseUrl
+              npm run cy:run
+            else
+              echo Running local server and testing it
+              npm test
