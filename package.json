@@ -31,5 +31,8 @@
     "netlify-plugin-cypress": "^1.4.1",
     "nodemon": "^1.19.2",
     "serverless-http": "^2.3.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["client/cypress"]
   }
 }
