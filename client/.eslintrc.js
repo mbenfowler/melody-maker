@@ -6,6 +6,9 @@ module.exports = {
     'plugin:functional/recommended',
     'plugin:prettier/recommended', // Should always be last. Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
   ],
+  globals: {
+    cy: true,
+  },
   plugins: ['functional'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off', // This rule prevents you from letting React component return types be inferred.
