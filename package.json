@@ -6,7 +6,7 @@
   "scripts": {
     "build": "netlify-lambda build server",
     "start": "nodemon server-local.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose --testPathIgnorePatterns <rootDir>/client/cypress"
   },
   "repository": {
     "type": "git",
@@ -31,10 +31,5 @@
     "netlify-plugin-cypress": "^1.4.1",
     "nodemon": "^1.19.2",
     "serverless-http": "^2.3.0"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "client/cypress"
-    ]
   }
 }
