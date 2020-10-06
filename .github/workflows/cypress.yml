@@ -21,4 +21,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          command: npx cypress run --env configFile=production
+          command: CYPRESS_CACHE_FOLDER=./tmp/Cypress npx cypress run --env configFile=production
