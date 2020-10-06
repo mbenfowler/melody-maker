@@ -1,0 +1,8 @@
+{
+  "env": {
+    "apiURL": "$CYPRESS_baseUrl/.netlify/functions/server"
+  },
+  "baseUrl": "$CYPRESS_baseUrl",
+  "chromeWebSecurity": false,
+  "projectId": "rajcgm"
+}
