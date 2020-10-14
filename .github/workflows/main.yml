@@ -30,6 +30,6 @@ jobs:
 
     - name: npm install, build and test
       run: |
-        npm install && cd client && npm install
+        npm install --no-package-lock --no-save cypress
         npm run build --if-present
         npm test
