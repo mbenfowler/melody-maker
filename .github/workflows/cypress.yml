@@ -20,5 +20,9 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_baseUrl: 'https://${{ github.event.number }}--zen-cori-c5a337.netlify.app'
         with:
+          wait-on: 'https://${{ github.event.number }}--zen-cori-c5a337.netlify.app'
+          wait-on-timeout: 90
           command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
