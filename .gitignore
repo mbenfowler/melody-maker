@@ -2,6 +2,7 @@ functions/
 node_modules/
 .env
 cypress/integration/examples
+cypress/videos
 
 # Logs
 logs
