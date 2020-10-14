@@ -12,7 +12,8 @@ require('dotenv').config();
 function createMelodyURL(melody, req) {
   console.log(req);
   var queryParams = queryParamToString(melody);
-  return `${req.headers.referer}?${queryParams}`;
+  const baseUrl = req.headers.referer ? req.headers.referer : `https://${req.headers.host}`;
+  return `${baseUrl}?${queryParams}`;
 }
 
 function queryParamToString(queryObject) {
