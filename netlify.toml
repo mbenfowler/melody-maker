@@ -11,4 +11,4 @@
 # Deploy Preview context: all deploys generated from a pull/merge request will
 # inherit these settings.
 [context.deploy-preview]
-  command = "BASE_URL=$DEPLOY_PRIME_URL npm run build"
+  command = "CYPRESS_baseUrl=$DEPLOY_PRIME_URL npm run build "
