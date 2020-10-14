@@ -6,12 +6,23 @@ const siteAuthor = '@gojutin';
 const siteUrl = 'https://gatsby-starter-typescript-deluxe.netlify.com';
 const siteImage = `${siteUrl}/icons/icon_512x512.png`;
 const siteKeywords = ['gatsby', 'typescript', 'starter', 'javascript', 'react'];
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
 module.exports = {
+  developMiddleware: (app) => {
+    app.use(
+      '/.netlify/functions/',
+      createProxyMiddleware({
+        target: 'http://localhost:3000/.netlify/functions',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      })
+    );
+  },
   siteMetadata: {
     title: siteTitle,
     description: siteDescription,
