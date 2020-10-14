@@ -4,25 +4,33 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  deployment_status:
+    branches: [ master ]
   schedule:
   - cron: "0 2 * * 1-5"
 jobs:
-  cypress-run:
+  e2e:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node_version: ['10']
         os: [ubuntu-latest]
     steps:
-      - name: Checkout
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+      - name: Checkout 🛎
         uses: actions/checkout@v1
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Run Cypress 🌲
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_baseUrl: 'https://${{ github.event.number }}--zen-cori-c5a337.netlify.app'
+          CYPRESS_baseUrl: ${{ github.event.deployment_status.target_url }}
         with:
-          wait-on: 'https://${{ github.event.number }}--zen-cori-c5a337.netlify.app'
+          wait-on: ${{ github.event.deployment_status.target_url }}
           wait-on-timeout: 90
           command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
