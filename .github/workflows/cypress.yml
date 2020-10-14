@@ -21,4 +21,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          command: npx cypress run --env configFile=production
+          command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
