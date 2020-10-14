@@ -93,7 +93,7 @@ function getValidNotes(tonic, scaleIntervals) {
 }
 
 function getScaleIntervalArray(scale) {
-    scaleIntervalArray = scale.split(' ')
+    const scaleIntervalArray = scale.split(' ')
     return scaleIntervalArray
 }
 

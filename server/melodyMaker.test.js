@@ -25,13 +25,13 @@ test('validNotes has the same number of notes as the scale interval', () => {
 })
 
 function queryStringToObjectReduce(queryString) {
-    decodedQueryString = decodeURIComponent(queryString)
+    const decodedQueryString = decodeURIComponent(queryString)
     var splitAmpersand = decodedQueryString.split('&')
     return splitAmpersand.reduce((melodyObject, element, i) => {
         if(i == 0) {
             element = element.substring(1)
         }
-        elementArray = element.split('=')
+        const elementArray = element.split('=')
         try {
             melodyObject[elementArray[0]] = JSON.parse(elementArray[1])
         } catch {
