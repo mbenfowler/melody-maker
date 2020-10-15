@@ -12,6 +12,7 @@
 # inherit these settings.
 [context.deploy-preview]
   command = "
+    BASE_URL=$DEPLOY_PRIME_URL &&
     echo $DEPLOY_PRIME_URL &&
     echo deploy prime &&
     echo $CYPRESS_BASE_URL &&
@@ -19,5 +20,6 @@
     export CYPRESS_BASE_URL=$DEPLOY_PRIME_URL &&
     export CYPRESS_baseUrl=$DEPLOY_PRIME_URL &&
     echo $CYPRESS_BASE_URL &&
+    echo BASE_URL &&
     echo base after &&
     npm run build"
