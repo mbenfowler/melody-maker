@@ -6,9 +6,4 @@
 # Deploy Preview context: all deploys generated from a pull/merge request will
 # inherit these settings.
 [context.deploy-preview]
-  command = "
-    echo $DEPLOY_URL &&
-    export BASE_URL=$DEPLOY_URL &&
-    npm run build &&
-    npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
-  "
+  command = "echo $DEPLOY_URL && export CYPRESS_baseUrl=$DEPLOY_URL && npm run build && npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf"
