@@ -17,4 +17,5 @@
     export CYPRESS_BASE_URL=$DEPLOY_URL &&
     export CYPRESS_baseUrl=$DEPLOY_URL &&
     npm run build &&
+    npm run start &&
     npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf"
