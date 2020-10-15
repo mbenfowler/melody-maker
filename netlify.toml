@@ -1,15 +1,15 @@
 [build]
-  command = "npm run build"
+  CI = "npm run build"
   functions = "functions"
   publish = "public"
 
 # Deploy Preview context: all deploys generated from a pull/merge request will
 # inherit these settings.
 [context.deploy-preview]
+  CI = "npm run build"
   command = "
     echo $DEPLOY_URL &&
     export BASE_URL=$DEPLOY_URL &&
-    export CYPRESS_BASE_URL=$DEPLOY_URL &&
     export CYPRESS_baseUrl=$DEPLOY_URL &&
-    npm run build &&
-    npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf"
+    npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
+  "
