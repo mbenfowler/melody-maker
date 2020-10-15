@@ -29,8 +29,8 @@ jobs:
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_baseUrl: ${{ github.event.deployment_status.target_url }}
+          CYPRESS_baseUrl: 'https://deploy-preview-${{ github.event.number }}--copywork.netlify.app'
         with:
-          wait-on: ${{ github.event.deployment_status.target_url }}
+          wait-on: 'https://deploy-preview-${{ github.event.number }}--copywork.netlify.app'
           wait-on-timeout: 90
           command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
