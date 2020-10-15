@@ -7,6 +7,7 @@ context('On index page', () => {
     cy.url().then(($url) => {
       const origURL = $url
       cy.get('[data-qa=get-new-melody-button]').click()
+      cy.wait(5000)
       cy.url().should('not.equal', origURL)
     })
   })
