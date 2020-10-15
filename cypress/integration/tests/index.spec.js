@@ -6,7 +6,7 @@ context('On index page', () => {
   it('clicking the get new melody button refreshes the page with a new query param', () => {
     cy.url().then(($url) => {
       const origURL = $url
-      cy.get('[data-qa=get-new-melody-button]').click()
+      cy.get('[data-qa=get-new-melody-button]').click({ force: true })
       cy.wait(5000)
       cy.url().should('not.equal', origURL)
     })
