@@ -10,7 +10,6 @@ on:
   - cron: "0 2 * * 1-5"
 jobs:
   e2e:
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,3 +33,4 @@ jobs:
           wait-on: 'https://deploy-preview-${{ github.event.number }}--zen-cori-c5a337.netlify.app'
           wait-on-timeout: 90
           command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
+          
