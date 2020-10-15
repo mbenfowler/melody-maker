@@ -13,7 +13,11 @@
 [context.deploy-preview]
   command = "
     echo $DEPLOY_PRIME_URL &&
+    echo "deploy prime" &&
     echo $CYPRESS_BASE_URL &&
+    echo "base before" &&
     export CYPRESS_BASE_URL=$DEPLOY_PRIME_URL &&
+    export CYPRESS_baseUrl=$DEPLOY_PRIME_URL &&
     echo $CYPRESS_BASE_URL &&
+    echo "base after" &&
     npm run build"

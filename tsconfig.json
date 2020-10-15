@@ -2,6 +2,7 @@
   "include": ["./src/**/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "es5",
     "jsx": "react",
     "skipLibCheck": true,
