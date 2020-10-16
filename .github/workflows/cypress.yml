@@ -32,5 +32,4 @@ jobs:
         with:
           wait-on: 'https://deploy-preview-${{ github.event.number }}--zen-cori-c5a337.netlify.app'
           wait-on-timeout: 90
-          command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
-          
+          command: npx cypress open --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
