@@ -35,7 +35,7 @@ jobs:
           wait-on-timeout: 90
           command: npx cypress run --record --key ff1fa0a0-bd1b-4b6e-9db4-752f627dcbaf
       - name: Run Cypress Staging 🌲
-        if: github.ref == '!refs/heads/master'
+        if: github.ref != 'refs/heads/master'
         uses: cypress-io/github-action@v2
         env:
           CYPRESS_baseUrl: 'https://deploy-preview-${{ github.event.number }}--zen-cori-c5a337.netlify.app'
