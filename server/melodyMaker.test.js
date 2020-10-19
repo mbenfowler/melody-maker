@@ -1,4 +1,5 @@
 const { pickNote, orderNotesTonicFirst, getValidNotes, getScaleIntervalArray, IVLS, SCALES } = require('./melodyMaker');
+import { queryStringToObjectReduce } from '../src/melodyPlayer/player.js';
 
 test('pickNote returns a frequency number', () => {
     const note = pickNote();
@@ -30,23 +31,6 @@ test('all SCALES contain the correct IVLS', () => {
     intervalSet.forEach(interval => expect(IVLS).toContain(interval))
   })
 })
-
-function queryStringToObjectReduce(queryString) {
-    const decodedQueryString = decodeURIComponent(queryString)
-    var splitAmpersand = decodedQueryString.split('&')
-    return splitAmpersand.reduce((melodyObject, element, i) => {
-        if(i == 0) {
-            element = element.substring(1)
-        }
-        const elementArray = element.split('=')
-        try {
-            melodyObject[elementArray[0]] = JSON.parse(elementArray[1])
-        } catch {
-            melodyObject[elementArray[0]] = elementArray[1]
-        }
-        return melodyObject
-    }, {})
-}
 
 test('it turns a query string into an object', () => {
     var queryString = `?key=A&scale=oriental&melody=%5B%5B523.25%2C0%2C0.5%5D%2C%5B329.63%2C0.5%2C1%5D%2C%5B987.77%2C1%2C1.5%5D%2C%5B1760%2C1.5%2C2%5D%2C%5B311.13%2C2%2C2.5%5D%2C%5B174.61%2C2.5%2C3%5D%2C%5B987.77%2C3%2C4%5D%2C%5B523.25%2C4%2C5%5D%2C%5B622.25%2C5%2C6%5D%2C%5B659.25%2C6%2C7%5D%2C%5B698.46%2C7%2C8%5D%2C%5B830.61%2C8%2C9%5D%2C%5B880%2C9%2C10%5D%2C%5B987.77%2C10%2C13%5D%5D`
