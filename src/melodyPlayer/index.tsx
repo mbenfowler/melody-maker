@@ -9,11 +9,18 @@ function MelodyButton(props: {
 }) {
   const [buttonText, setButtonText] = React.useState('Your melody is in...');
 
+  function playAndChangeText() {
+    playNotes(props.melody);
+    setButtonText(`Your melody is in ${props.tonic} ${props.scaleName}`);
+  }
+
   return (
     <Button
       onClick={() => {
-        playNotes(props.melody);
-        setButtonText(`Your melody is in ${props.tonic} ${props.scaleName}`);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        props.melody === undefined
+          ? alert('No melody found! Click the get new melody button.')
+          : playAndChangeText();
       }}
       data-qa="play-melody-button"
     >
@@ -25,11 +32,18 @@ function MelodyButton(props: {
 function ScaleButton(props: { scale: any; tonic: string; scaleName: string }) {
   const [buttonText, setButtonText] = React.useState('Your scale is in...');
 
+  function playAndChangeText() {
+    playNotes(props.scale);
+    setButtonText(`Your melody is in ${props.tonic} ${props.scaleName}`);
+  }
+
   return (
     <Button
       onClick={() => {
-        playNotes(props.scale);
-        setButtonText(`Your scale is in ${props.tonic} ${props.scaleName}`);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        props.scale === undefined
+          ? alert('No scale found! Click the get new melody button.')
+          : playAndChangeText();
       }}
       data-qa="play-scale-button"
     >
