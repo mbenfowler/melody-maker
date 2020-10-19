@@ -1,4 +1,4 @@
-const { pickNote, orderNotesTonicFirst, getValidNotes } = require('./melodyMaker');
+const { pickNote, orderNotesTonicFirst, getValidNotes, getScaleIntervalArray, IVLS, SCALES } = require('./melodyMaker');
 
 test('pickNote returns a frequency number', () => {
     const note = pickNote();
@@ -22,6 +22,13 @@ test('validNotes has the same number of notes as the scale interval', () => {
     const testScaleIntervals = "1P 2M 3M 5P 6M"
     const testScaleSize = testScaleIntervals.split(' ').length
     expect(testScaleSize).toEqual(getValidNotes(tonic, testScaleIntervals).length)
+})
+
+test('all SCALES contain the correct IVLS', () => {
+  const scaleIntervals = SCALES.map(scale => getScaleIntervalArray(scale[0]))
+  scaleIntervals.forEach((intervalSet)=> {
+    intervalSet.forEach(interval => expect(IVLS).toContain(interval))
+  })
 })
 
 function queryStringToObjectReduce(queryString) {
