@@ -2,11 +2,20 @@ import * as React from 'react';
 import { Button } from '../components/button';
 import { queryStringToObjectReduce, playNotes, getNewMelody } from './player';
 
-function MelodyButton(props: {
-  melody: any;
-  tonic: string;
-  scaleName: string;
-}) {
+function queryParamToString(queryObject: MelodyState) {
+  var queryKeys = Object.keys(queryObject);
+  return queryKeys.reduce((url, key, i) => {
+    var paramString = `${key}=${encodeURIComponent(
+      JSON.stringify(queryObject[key as keyof MelodyState])
+    )}`;
+    if (i < queryKeys.length - 1) {
+      paramString += '&';
+    }
+    return url + paramString;
+  }, '');
+}
+
+function MelodyButton(props: { melody: any; tonic: string; scaleName: Scale }) {
   const [buttonText, setButtonText] = React.useState('Your melody is in...');
 
   function playAndChangeText() {
@@ -29,7 +38,7 @@ function MelodyButton(props: {
   );
 }
 
-function ScaleButton(props: { scale: any; tonic: string; scaleName: string }) {
+function ScaleButton(props: { scale: any; tonic: string; scaleName: Scale }) {
   const [buttonText, setButtonText] = React.useState('Your scale is in...');
 
   function playAndChangeText() {
@@ -52,33 +61,58 @@ function ScaleButton(props: { scale: any; tonic: string; scaleName: string }) {
   );
 }
 
-function NewMelodyButton() {
+function NewMelodyButton(props: { onClick: (e: HTMLButtonElement) => void }) {
   return (
-    <Button onClick={getNewMelody} data-qa="get-new-melody-button">
+    <Button onClick={props.onClick} data-qa="get-new-melody-button">
       Get me a new melody!
     </Button>
   );
 }
+type Scale = string[];
+type Melody = [number, number, number][];
+interface MelodyState {
+  melody: Melody;
+  key: string;
+  scale: Scale;
+  scaleNotes: Melody;
+}
 
 export function MelodyPlayer() {
-  // eslint-disable-next-line functional/no-let
-  let queryObject = {};
-  if (typeof window !== 'undefined') {
-    queryObject = queryStringToObjectReduce(window.location.search);
+  const [state, setState] = React.useState<MelodyState>({
+    melody: [],
+    scaleNotes: [],
+    key: '',
+    scale: [],
+  });
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setState(queryStringToObjectReduce(window.location.search));
+    }
+  }, []);
+
+  async function onNewMelodyClick() {
+    const newMelodyBody: MelodyState = await getNewMelody();
+    setState(newMelodyBody);
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line functional/immutable-data
+      window.location.search = queryParamToString(newMelodyBody);
+    }
   }
+
   return (
     <>
       <MelodyButton
-        melody={queryObject.melody}
-        tonic={queryObject.key}
-        scaleName={queryObject.scale}
+        melody={state.melody}
+        tonic={state.key}
+        scaleName={state.scale}
       />
       <ScaleButton
-        scale={queryObject.scaleNotes}
-        tonic={queryObject.key}
-        scaleName={queryObject.scale}
+        scale={state.scaleNotes}
+        tonic={state.key}
+        scaleName={state.scale}
       />
-      <NewMelodyButton />
+      <NewMelodyButton onClick={onNewMelodyClick} />
     </>
   );
 }

@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable functional/immutable-data */
 const path = require('path');
 const express = require('express');
 const serverless = require('serverless-http');
@@ -12,7 +12,9 @@ require('dotenv').config();
 function createMelodyURL(melody, req) {
   console.log(req);
   var queryParams = queryParamToString(melody);
-  const baseUrl = req.headers.referer ? req.headers.referer : `https://${req.headers.host}`;
+  const baseUrl = req.headers.referer
+    ? req.headers.referer
+    : `https://${req.headers.host}`;
   return `${baseUrl}?${queryParams}`;
 }
 
@@ -30,12 +32,9 @@ function queryParamToString(queryObject) {
 }
 
 const router = express.Router();
-const localDir = __dirname;
 router.get('/', (req, res) => {
   const melody = createMelody();
-  res.json({
-    url: createMelodyURL(melody, req),
-  });
+  res.json(melody);
 });
 
 router.post('/', (req, res) => {
