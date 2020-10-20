@@ -1,11 +1,9 @@
+/* eslint-disable functional/immutable-data */
 /* eslint-disable functional/no-this-expression */
-export async function getNewMelody() {
+
+export function getNewMelody() {
   const url = '/.netlify/functions/server/';
-  const response = await fetchAsync(url, { mode: 'no-cors' });
-  if (typeof window !== 'undefined') {
-    // eslint-disable-next-line functional/immutable-data
-    window.location.href = response.url;
-  }
+  return fetchAsync(url, { mode: 'no-cors' });
 }
 
 async function fetchAsync(url) {
