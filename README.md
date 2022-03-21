@@ -1,7 +1,7 @@
 # melody-maker
 Melody Maker™®© is an open source music education/creative tool that will generate and play you a unique melody!
 
-[Check out the latest app version here!](https://quizzical-varahamihira-d6e47e.netlify.app/) 
+[Check out the latest app version here!](https://zen-cori-c5a337.netlify.app/) 
 
 Clicking the "Get me a new melody!" button hits our API, returning an encoded set of melody/scale data as URL query parameters. These params are then processed when clicking play melody/play scale buttons. Just hit the new melody button again to get another tune, guaranteed to be unique and never before heard in the history of music or your money back!
 
