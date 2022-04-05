@@ -27,13 +27,13 @@
   <div id="description"></div>
   <div id="keyboard"></div>
   <script> 
-    
+    const keyboard = document.getElementById('keyboard')
 
-    document.body.onload = addWhiteKeys(14);
+    document.body.onload = addKeys(14);
     window.addEventListener('resize', resizeAllBlackKeys)
     const allBlackKeysArray = Array.from(document.getElementsByClassName('black-key'))
-
-    function addWhiteKeys(numKeys) {
+    
+    function addKeys(numKeys) {
       const whiteKeysPerOctave = 6
       let i = 0;
       let whiteKeyCount = 0;
@@ -44,19 +44,19 @@
         newDiv.classList.add('white-key')
     
         // add the newly created element and its content into the DOM
-        const currentDiv = document.getElementById("description");
-      
-        document.getElementById('keyboard').appendChild(newDiv, currentDiv);
+        keyboard.appendChild(newDiv);
 
         var coords = getPos(document.querySelector(`#white-key${i}`));
 
         if(whiteKeyCount < whiteKeysPerOctave) {
           if(blackKeyCheck(whiteKeyCount)) {
-            addBlackKey(`white-key${i}`, i, coords);
+            addBlackKey();
           }
           whiteKeyCount++
         }
-        else whiteKeyCount = 0 
+        else {
+          whiteKeyCount = 0 
+        }
           
         i++
       }
@@ -65,17 +65,16 @@
       document.getElementById("description").innerHTML = `Below should be a keyboard with ${totalKeyCount} keys.`;
     }
 
-    function addBlackKey(whiteKeyID, i, whiteKeyCoords) {
+    function addBlackKey() {
       const newDiv = document.createElement("div");
-      newDiv.setAttribute('id', `black-key${i}`)
       newDiv.classList.add('black-key')
-      document.getElementById('keyboard').appendChild(newDiv, whiteKeyID);
-      sizeBlackKey(document.getElementById(`black-key${i}`))
+      document.getElementById('keyboard').appendChild(newDiv);
+      sizeBlackKey(newDiv)
     }
 
     function getPos(el) {
       var rect=el.getBoundingClientRect();
-      return {left:rect.left,right:rect.right,top:rect.top};
+      return rect
     }
 
     function blackKeyCheck(whiteKeyCount) {
