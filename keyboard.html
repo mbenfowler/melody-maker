@@ -75,22 +75,15 @@
       const whiteKeysNeedingBlackKeys = [0,1,3,4,5]
       return whiteKeysNeedingBlackKeys.includes(whiteKeyCount)
     }
-
-    function getCurrentWhiteKeyWidth() {
-      return document.getElementsByClassName('white-key')[0].offsetWidth
-    }
     
     function resizeAllBlackKeys() {
-      currentWhiteKeyWidth = getCurrentWhiteKeyWidth()
-      allBlackKeysArray.forEach((blackKey) => {
-        sizeBlackKey(blackKey, currentWhiteKeyWidth)
-      })
+      allBlackKeysArray.forEach(sizeBlackKey)
     }
     
-    function sizeBlackKey(blackKey, currentWhiteKeyWidth) {
+    function sizeBlackKey(blackKey) {
       const whiteKeySibling = blackKey.previousElementSibling
       const whiteKeySiblingCoords = getPos(whiteKeySibling)
-      blackKey.style.width = `${currentWhiteKeyWidth / 2}px`
+      blackKey.style.width = `${whiteKeySibling.offsetWidth / 2}px`
       blackKey.style.left = `${whiteKeySiblingCoords.right - (blackKey.offsetWidth / 2)}px`
     }
 
