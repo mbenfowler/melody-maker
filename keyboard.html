@@ -30,7 +30,9 @@
     const keyboard = document.getElementById('keyboard')
 
     document.body.onload = addKeys(14);
+    window.addEventListener('load', resizeAllBlackKeys)
     window.addEventListener('resize', resizeAllBlackKeys)
+
     const allBlackKeysArray = Array.from(document.getElementsByClassName('black-key'))
     
     function addKeys(numKeys) {
@@ -74,14 +76,21 @@
       return whiteKeysNeedingBlackKeys.includes(whiteKeyCount)
     }
 
-    function resizeAllBlackKeys() {
-      allBlackKeysArray.forEach(sizeBlackKey)
+    function getCurrentWhiteKeyWidth() {
+      return document.getElementsByClassName('white-key')[0].offsetWidth
     }
-
-    function sizeBlackKey(blackKey) {
+    
+    function resizeAllBlackKeys() {
+      currentWhiteKeyWidth = getCurrentWhiteKeyWidth()
+      allBlackKeysArray.forEach((blackKey) => {
+        sizeBlackKey(blackKey, currentWhiteKeyWidth)
+      })
+    }
+    
+    function sizeBlackKey(blackKey, currentWhiteKeyWidth) {
       const whiteKeySibling = blackKey.previousElementSibling
       const whiteKeySiblingCoords = getPos(whiteKeySibling)
-      blackKey.style.width = `${whiteKeySibling.offsetWidth / 2}px`
+      blackKey.style.width = `${currentWhiteKeyWidth / 2}px`
       blackKey.style.left = `${whiteKeySiblingCoords.right - (blackKey.offsetWidth / 2)}px`
     }
 
