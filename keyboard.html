@@ -40,13 +40,10 @@
       while(i < numKeys) {
         // create a new rectangle div element
         const newDiv = document.createElement("div");
-        newDiv.setAttribute('id', `white-key${i}`)
         newDiv.classList.add('white-key')
     
         // add the newly created element and its content into the DOM
         keyboard.appendChild(newDiv);
-
-        var coords = getPos(document.querySelector(`#white-key${i}`));
 
         if(whiteKeyCount < whiteKeysPerOctave) {
           if(blackKeyCheck(whiteKeyCount)) {
@@ -72,11 +69,6 @@
       sizeBlackKey(newDiv)
     }
 
-    function getPos(el) {
-      var rect=el.getBoundingClientRect();
-      return rect
-    }
-
     function blackKeyCheck(whiteKeyCount) {
       const whiteKeysNeedingBlackKeys = [0,1,3,4,5]
       return whiteKeysNeedingBlackKeys.includes(whiteKeyCount)
@@ -91,6 +83,10 @@
       const whiteKeySiblingCoords = getPos(whiteKeySibling)
       blackKey.style.width = `${whiteKeySibling.offsetWidth / 2}px`
       blackKey.style.left = `${whiteKeySiblingCoords.right - (blackKey.offsetWidth / 2)}px`
+    }
+
+    function getPos(el) {
+      return el.getBoundingClientRect();
     }
   </script>
 </body>
