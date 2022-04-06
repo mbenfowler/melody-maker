@@ -40,18 +40,20 @@
       const keysPerOctave = keyNames.length
       let i = 0;
       let keyCount = 0;
+      let octaveCount = 2 //start at the second octave;
       while(i < numKeys) {
-        addWhiteKey(keyCount)
+        addWhiteKey(keyCount, octaveCount)
         keyCount++
         
         if(keyCount < keysPerOctave) {
           if(blackKeyCheck(keyCount)) {
-            addBlackKey(keyCount);
+            addBlackKey(keyCount, octaveCount);
             keyCount++
           }
         }
         else {
-          keyCount = 0 
+          keyCount = 0
+          octaveCount++
         }
           
         i++
@@ -61,17 +63,17 @@
       document.getElementById("description").innerHTML = `Below should be a keyboard with ${totalKeyCount} keys.`;
     }
 
-    function addWhiteKey(keyCount) {
+    function addWhiteKey(keyCount, octaveCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('white-key')
-      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
+      newDiv.setAttribute('key-name', `${keyNames[keyCount]}${octaveCount}`)
       keyboard.appendChild(newDiv);
     }
     
-    function addBlackKey(keyCount) {
+    function addBlackKey(keyCount, octaveCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('black-key')
-      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
+      newDiv.setAttribute('key-name', `${keyNames[keyCount]}${octaveCount}`)
       keyboard.appendChild(newDiv);
       sizeBlackKey(newDiv)
     }
