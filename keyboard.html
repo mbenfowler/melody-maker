@@ -37,25 +37,18 @@
     const allBlackKeysArray = Array.from(document.getElementsByClassName('black-key'))
     
     function addKeys(numKeys) {
-      const keysPerOctave = 11
+      const keysPerOctave = keyNames.length
       let i = 0;
       let keyCount = 0;
       while(i < numKeys) {
-        // create a new rectangle div element
-        const newDiv = document.createElement("div");
-        newDiv.classList.add('white-key')
-        newDiv.setAttribute('key', `${keyNames[keyCount]}`)
-        console.log(newDiv.getAttribute('key'))
-    
-        // add the newly created element and its content into the DOM
-        keyboard.appendChild(newDiv);
-
+        addWhiteKey(keyCount)
+        keyCount++
+        
         if(keyCount < keysPerOctave) {
           if(blackKeyCheck(keyCount)) {
-            keyCount++
             addBlackKey(keyCount);
+            keyCount++
           }
-          keyCount++
         }
         else {
           keyCount = 0 
@@ -68,16 +61,23 @@
       document.getElementById("description").innerHTML = `Below should be a keyboard with ${totalKeyCount} keys.`;
     }
 
+    function addWhiteKey(keyCount) {
+      const newDiv = document.createElement("div");
+      newDiv.classList.add('white-key')
+      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
+      keyboard.appendChild(newDiv);
+    }
+    
     function addBlackKey(keyCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('black-key')
-      newDiv.setAttribute('key', `${keyNames[keyCount]}`)
+      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
       keyboard.appendChild(newDiv);
       sizeBlackKey(newDiv)
     }
 
     function blackKeyCheck(keyCount) {
-      const whiteKeysNeedingBlackKeys = [0,1,2,5,7,9]
+      const whiteKeysNeedingBlackKeys = [1,3,6,8,10]
       return whiteKeysNeedingBlackKeys.includes(keyCount)
     }
     
