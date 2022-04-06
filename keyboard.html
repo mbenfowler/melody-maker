@@ -68,16 +68,16 @@
     function addWhiteKey(keyCount, octaveCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('white-key')
-      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
-      newDiv.setAttribute('octave', `${octaveCount}`)
+      newDiv.setAttribute('key-name', keyNames[keyCount])
+      newDiv.setAttribute('octave', octaveCount)
       keyboard.appendChild(newDiv);
     }
     
     function addBlackKey(keyCount, octaveCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('black-key')
-      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
-      newDiv.setAttribute('octave', `${octaveCount}`)
+      newDiv.setAttribute('key-name', keyNames[keyCount])
+      newDiv.setAttribute('octave', octaveCount)
       keyboard.appendChild(newDiv);
       sizeBlackKey(newDiv)
     }
