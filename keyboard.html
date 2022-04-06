@@ -29,19 +29,21 @@
   <script> 
     const keyNames = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B']
     const keyboard = document.getElementById('keyboard')
+    const totalKeys = 14
+    const startingOctave = 2
 
-    document.body.onload = addKeys(14);
+    document.body.onload = addKeys(totalKeys, startingOctave);
     window.addEventListener('load', resizeAllBlackKeys)
     window.addEventListener('resize', resizeAllBlackKeys)
 
     const allBlackKeysArray = Array.from(document.getElementsByClassName('black-key'))
     
-    function addKeys(numKeys) {
+    function addKeys(totalKeys, startingOctave) {
       const keysPerOctave = keyNames.length
       let i = 0;
       let keyCount = 0;
-      let octaveCount = 2 //start at the second octave;
-      while(i < numKeys) {
+      let octaveCount = startingOctave //start at the second octave;
+      while(i < totalKeys) {
         addWhiteKey(keyCount, octaveCount)
         keyCount++
         
@@ -66,14 +68,16 @@
     function addWhiteKey(keyCount, octaveCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('white-key')
-      newDiv.setAttribute('key-name', `${keyNames[keyCount]}${octaveCount}`)
+      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
+      newDiv.setAttribute('octave', `${octaveCount}`)
       keyboard.appendChild(newDiv);
     }
     
     function addBlackKey(keyCount, octaveCount) {
       const newDiv = document.createElement("div");
       newDiv.classList.add('black-key')
-      newDiv.setAttribute('key-name', `${keyNames[keyCount]}${octaveCount}`)
+      newDiv.setAttribute('key-name', `${keyNames[keyCount]}`)
+      newDiv.setAttribute('octave', `${octaveCount}`)
       keyboard.appendChild(newDiv);
       sizeBlackKey(newDiv)
     }
