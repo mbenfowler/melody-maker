@@ -18,9 +18,13 @@ export function Keyboard() {
     'A#/Bb',
     'B',
   ];
-  const keyboard = document.getElementById('keyboard');
+  const keyboard = document.getElementById('keyboard-module--keyboard--1LOIs');
   const totalKeys = 14;
   const startingOctave = 2;
+
+  document.body.onload = addKeys;
+  window.addEventListener('load', resizeAllBlackKeys);
+  window.addEventListener('resize', resizeAllBlackKeys);
 
   const allBlackKeysArray = Array.from(
     document.getElementsByClassName('blackkey')
@@ -57,7 +61,8 @@ export function Keyboard() {
   function addWhiteKey(keyCount, octaveCount) {
     const newDiv = document.createElement('div');
     newDiv.classList.add(styles.whitekey);
-    console.log(newDiv)
+    console.log(newDiv);
+    console.log(keyboard);
     newDiv.setAttribute('key-name', keyNames[keyCount]);
     newDiv.setAttribute('octave', octaveCount);
     keyboard.appendChild(newDiv);
@@ -94,15 +99,14 @@ export function Keyboard() {
     return el.getBoundingClientRect();
   }
 
+  const [getMeAFrigginKeyBoard] = React.useState(addKeys);
+
+  React.useEffect(() => {}, [getMeAFrigginKeyBoard]);
+
   return (
     <>
       <div id="description"></div>
-      <div id="keyboard"></div>
-      <script>
-        {(document.body.onload = addKeys)}
-        {window.addEventListener('load', resizeAllBlackKeys)}
-        {window.addEventListener('resize', resizeAllBlackKeys)}
-      </script>
+      <div id="keyboard">{getMeAFrigginKeyBoard}</div>
 
       {totalKeyss.map(function (key) {
         return <div>{key}</div>;
