@@ -18,11 +18,16 @@ export function Keyboard() {
     'A#/Bb',
     'B',
   ];
+  const keyboardDiv = document.createElement('div');
+  keyboardDiv.setAttribute('id', 'keyboard');
+  keyboardDiv.classList.add(styles.keyboard);
+  console.log(keyboardDiv);
+  document.body.appendChild(keyboardDiv);
+
   const keyboard = document.getElementById('keyboard');
   const totalKeys = 14;
   const startingOctave = 2;
 
-  document.body.onload = addKeys;
   window.addEventListener('load', resizeAllBlackKeys);
   window.addEventListener('resize', resizeAllBlackKeys);
 
@@ -32,9 +37,9 @@ export function Keyboard() {
 
   function addKeys() {
     const keysPerOctave = keyNames.length;
-    const i = 0;
-    const keyCount = 0;
-    const octaveCount = startingOctave; //start at the second octave;
+    let i = 0;
+    let keyCount = 0;
+    let octaveCount = startingOctave; //start at the second octave;
     while (i < totalKeys) {
       addWhiteKey(keyCount, octaveCount);
       keyCount++;
@@ -53,16 +58,17 @@ export function Keyboard() {
     }
 
     const totalKeyCount = keyboard.childElementCount;
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.setAttribute('id', 'description');
+    document.body.appendChild(descriptionDiv);
     document.getElementById(
       'description'
-    ).innerHTML = `Below should be a keyboard with ${totalKeyCount} keys.`;
+    ).innerHTML = `Above should be a keyboard with ${totalKeyCount} keys.`;
   }
 
   function addWhiteKey(keyCount, octaveCount) {
     const newDiv = document.createElement('div');
     newDiv.classList.add(styles.whitekey);
-    console.log(newDiv);
-    console.log(keyboard);
     newDiv.setAttribute('key-name', keyNames[keyCount]);
     newDiv.setAttribute('octave', octaveCount);
     keyboard.appendChild(newDiv);
@@ -105,9 +111,6 @@ export function Keyboard() {
 
   return (
     <>
-      <div id="description"></div>
-      <div id="keyboard">{getMeAFrigginKeyBoard}</div>
-
       {totalKeyss.map(function (key) {
         return <div>{key}</div>;
       })}
