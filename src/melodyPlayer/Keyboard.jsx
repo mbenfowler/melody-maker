@@ -18,7 +18,7 @@ export function Keyboard() {
     'A#/Bb',
     'B',
   ];
-  const keyboard = document.getElementById('keyboard-module--keyboard--1LOIs');
+  const keyboard = document.getElementById('keyboard');
   const totalKeys = 14;
   const startingOctave = 2;
 
