@@ -80,7 +80,7 @@
     "body-parser": "^1.19.0",
     "cypress": "^5.4.0",
     "eslint": "^7.6.0",
-    "eslint-config-gojutin": "0.1.1",
+    "eslint-config-gojutin": "0.1.7",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-immutable": "^1.0.0",
     "eslint-plugin-import": "^2.22.0",
