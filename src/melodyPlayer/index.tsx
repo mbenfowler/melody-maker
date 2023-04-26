@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button } from '../components/button';
 import { queryStringToObjectReduce, playNotes, getNewMelody } from './player';
+import { Keyboard } from './Keyboard';
 
 function queryParamToString(queryObject: MelodyState) {
   var queryKeys = Object.keys(queryObject);
@@ -113,6 +114,7 @@ export function MelodyPlayer() {
         scaleName={state.scale}
       />
       <NewMelodyButton onClick={onNewMelodyClick} />
+      <Keyboard/>
     </>
   );
 }
